@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\NavbarController;
 use PHPUnit\TextUI\XmlConfiguration\Group;
 
 /*
@@ -27,7 +28,12 @@ Route::get('/redirects', function(){
 
 Route::middleware(['auth'])->group(function(){
     Route::get('/admin', [AdminController::class, "admin"]);
-    Route::get('/guru', [AdminController::class, "guru"]);
+    Route::get('/guru', [NavbarController::class, "navbar"])->name('dashboard');
+    Route::get('/guru/tkompetensi', [AdminController::class, "guru"]);
     Route::get('/siswa', [AdminController::class, "siswa"]);
     Route::get('/logout ', [LoginController::class, "logout"]);
 });
+
+// Route::get('/guru', [NavbarController::class, 'navbar']);
+// Route::get('/guru/tkompetensi', [NavbarController::class, 'navbar']);
+
